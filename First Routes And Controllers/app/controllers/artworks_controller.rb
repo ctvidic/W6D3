@@ -1,7 +1,18 @@
+require 'byebug'
 class ArtworksController < ApplicationController
     def index
         # render plain: "I'm in the index action!"
-        artworks = Artwork.all
+        if params.has_key?(:user_id)
+            artworks = Artwork.where(artist_id: params[:user_id])
+            artworkShare = ArtworkShare.where(viewer_id: params[:user_id])
+            artworkShare.each do |artShare|
+                shared_art = Artwork.where(id: artShare.artwork_id)
+                artworks += shared_art
+            end
+        else 
+            artworks = Artwork.all
+        end
+
         render json: artworks
     end
 
@@ -15,12 +26,10 @@ class ArtworksController < ApplicationController
     end
 
     def show
-        # debugger
         render json: Artwork.find(params[:id])
     end
 
     def update 
-        debugger
         artwork = Artwork.find(params[:id])
         artwork.update(artwork_params)
         if artwork.save
