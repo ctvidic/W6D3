@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts 'Committing seed action'
+puts 'Loading'
+puts 'Seeded!'
+
+User.create([{ username: 'PhilDaBeast' }])
+User.create([{ username: 'BillDaBeast' }])
+User.create([{ username: 'DillDaBeast' }])
+
+Artwork.create([{ title: 'Mona Lisa', image_url: 'www.image.com', artist_id: '1' }])
+Artwork.create([{ title: 'Mona Pisa', image_url: 'www.other_image.com', artist_id: '2' }])
+Artwork.create([{ title: 'Mona Disa', image_url: 'www.alternate_image.com', artist_id: '3' }])
+
+ArtworkShare.create(([ artwork_id: '1', viewer_id: '1' ]))
+ArtworkShare.create(([ artwork_id: '2', viewer_id: '2' ]))
+ArtworkShare.create(([ artwork_id: '3', viewer_id: '3' ]))
+
