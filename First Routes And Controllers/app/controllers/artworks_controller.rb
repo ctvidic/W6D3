@@ -20,6 +20,7 @@ class ArtworksController < ApplicationController
     end
 
     def update 
+        debugger
         artwork = Artwork.find(params[:id])
         artwork.update(artwork_params)
         if artwork.save
